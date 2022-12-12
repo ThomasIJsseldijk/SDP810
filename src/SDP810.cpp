@@ -21,7 +21,7 @@
 SDP810::SDP810()
 {
 
-    SDP810_wire = new sensorHub_Wire();
+    SDP810_wire = new robotPatient_Wire();
 }
 /**
  * @brief Destroy the SDP810::SDP810 object
@@ -37,8 +37,9 @@ SDP810::~SDP810()
  * 
  * @param channel 
  */
-void SDP810::begin(port channel)
+void SDP810::begin(robotPatient_Wire::port channel)
 {
+    
 
     SDP810_wire->begin(channel);
 

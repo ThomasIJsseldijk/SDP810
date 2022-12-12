@@ -1,7 +1,7 @@
 #ifndef SDP810_H
 #define SDP810_H
 
-#include <sensorHub_Wire.h>
+#include <robotPatient_Wire.h>
 
 
 #define SDP_addr 0x25
@@ -26,11 +26,11 @@ public:
 
     SDP810();
     ~SDP810();
-    void begin(port channel);
+    void begin(robotPatient_Wire::port channel);
     void read();
     int16_t getRaw();
     int16_t getVolume();
-    sensorHub_Wire *SDP810_wire;
+    robotPatient_Wire *SDP810_wire;
 
 };
 
