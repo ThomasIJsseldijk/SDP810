@@ -61,9 +61,7 @@ int16_t SDP810::getRaw()
 {
     return sensorRaw;
 }
-int16_t SDP810::getVolume()
+float SDP810::getVolume()
 {
-
-
-return 0;
+return sqrt(sensorRaw*2);
 }

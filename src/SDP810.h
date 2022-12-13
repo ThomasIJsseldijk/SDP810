@@ -29,7 +29,7 @@ public:
     void begin(robotPatient_Wire::port channel);
     void read();
     int16_t getRaw();
-    int16_t getVolume();
+    float getVolume();
     robotPatient_Wire *SDP810_wire;
 
 };
