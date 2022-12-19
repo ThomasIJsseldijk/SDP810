@@ -37,11 +37,10 @@ SDP810::~SDP810()
  * 
  * @param channel 
  */
-void SDP810::begin(robotPatient_Wire::port channel)
+void SDP810::begin(robotPatient_Wire *SDP810wire)
 {
     
-
-    SDP810_wire->begin(channel);
+    SDP810_wire = SDP810wire;
 
     byte setting[2] = {0x36, 0x15};
 

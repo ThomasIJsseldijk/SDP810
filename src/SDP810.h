@@ -26,7 +26,7 @@ public:
 
     SDP810();
     ~SDP810();
-    void begin(robotPatient_Wire::port channel);
+    void begin(robotPatient_Wire *SDP810wire);
     void read();
     int16_t getRaw();
     float getVolume();
