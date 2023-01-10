@@ -37,7 +37,7 @@ SDP810::~SDP810()
 /**
  * @brief 
  * 
- * @param channel 
+ * @param wire 
  */
 void SDP810::begin(TwoWire *wire)
 {
@@ -48,16 +48,29 @@ void SDP810::begin(TwoWire *wire)
     SDP810wire->write(setting, sizeof(setting));
     SDP810wire->endTransmission(true);
 }
+
+
+
+/**
+ * @brief 
+ * 
+ */
 void SDP810::read()
 {
 
     SDP810wire->requestFrom(SDP810address, sizeof(buffer), true);
     SDP810wire->readBytes(buffer, sizeof(buffer));
-    
+
     conversionFactor = buffer[6] << 8 | buffer[7];
     sensorRaw = (buffer[0] << 8 | buffer[1]);
     sensorRaw = sensorRaw / conversionFactor; 
 }
+
+/**
+ * @brief 
+ * 
+ * @return int16_t 
+ */
 int16_t SDP810::getRaw()
 {
     return sensorRaw;
