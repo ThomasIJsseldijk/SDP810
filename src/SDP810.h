@@ -1,12 +1,9 @@
 #ifndef SDP810_H
 #define SDP810_H
 
-#include <robotPatient_Wire.h>
 
-
-#define SDP_addr 0x25
-
-
+#include <Wire.h>
+#include <Arduino.h>
 
 class SDP810
 {
@@ -17,6 +14,8 @@ double flow;
 int16_t sensorRaw;
 int16_t conversionFactor;
 
+TwoWire *SDP810wire;
+char SDP810address = 0;
 
 
 byte buffer[9];
@@ -24,13 +23,12 @@ byte buffer[9];
 
 public:
 
-    SDP810();
+    SDP810(char sensorAddress);
     ~SDP810();
-    void begin(robotPatient_Wire *SDP810wire);
+    void begin(TwoWire *wire);
     void read();
     int16_t getRaw();
     float getVolume();
-    robotPatient_Wire *SDP810_wire;
 
 };
 

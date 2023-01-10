@@ -17,12 +17,14 @@
 /**
  * @brief Construct a new SDP810::SDP810 object
  * 
+ * @param sensorAddress 
  */
-SDP810::SDP810()
+SDP810::SDP810(char sensorAddress)
 {
-
-    SDP810_wire = new robotPatient_Wire();
+    SDP810address = sensorAddress;
 }
+
+
 /**
  * @brief Destroy the SDP810::SDP810 object
  * 
@@ -37,20 +39,20 @@ SDP810::~SDP810()
  * 
  * @param channel 
  */
-void SDP810::begin(robotPatient_Wire *SDP810wire)
+void SDP810::begin(TwoWire *wire)
 {
-    
-    SDP810_wire = SDP810wire;
-
     byte setting[2] = {0x36, 0x15};
+    SDP810wire = wire;
 
-    SDP810_wire->send(SDP_addr, setting);
+    SDP810wire->beginTransmission(SDP810address);
+    SDP810wire->write(setting, sizeof(setting));
+    SDP810wire->endTransmission(true);
 }
 void SDP810::read()
 {
 
-    SDP810_wire->read(SDP_addr, buffer, 9);
-
+    SDP810wire->requestFrom(SDP810address, sizeof(buffer), true);
+    SDP810wire->readBytes(buffer, sizeof(buffer));
     
     conversionFactor = buffer[6] << 8 | buffer[7];
     sensorRaw = (buffer[0] << 8 | buffer[1]);
