@@ -21,10 +21,6 @@
       "maintainer": false
     }
   ],
-  "dependencies": {
-      "name": "robotPatient_Wire",
-      "version": "https://github.com/ThomasIJsseldijk/robotPatient_Wire.git"
-  },
   "frameworks": "arduino",
   "platforms": "atmelsam"
 }
