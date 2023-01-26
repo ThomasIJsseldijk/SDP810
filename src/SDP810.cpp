@@ -35,10 +35,11 @@ SDP810::~SDP810()
 
 
 /**
- * @brief 
- * 
- * @param wire 
- */
+ * @brief Initialize communication with the SDP810 sensor
+ * @param[in] wire TwoWire object to use for communication with the sensor
+ * This function initializes communication with the SDP810 sensor by setting up
+ * the I2C communication object and configuring the sensor settings.
+*/
 void SDP810::begin(TwoWire *wire)
 {
     byte setting[2] = {0x36, 0x15};
@@ -52,8 +53,10 @@ void SDP810::begin(TwoWire *wire)
 
 
 /**
- * @brief 
- * 
+ * @brief Read data from the SDP810 sensor
+ * This function reads the data from the SDP810 sensor by sending a request to the sensor
+ * to send the data, and then read the data buffer. It also converts the sensor data into
+ * the appropriate format.
  */
 void SDP810::read()
 {
@@ -67,14 +70,20 @@ void SDP810::read()
 }
 
 /**
- * @brief 
- * 
- * @return int16_t 
+ * @brief Get the raw sensor data
+ * @return int16_t the raw sensor data in int16_t format
+ * This function returns the raw sensor data in int16_t format.
  */
 int16_t SDP810::getRaw()
 {
     return sensorRaw;
 }
+
+/**
+ * @brief Get the volume from the sensor data
+ * @return float the volume from the sensor data
+ * This function returns the volume from the sensor data.
+ */
 float SDP810::getVolume()
 {
 return sqrt(sensorRaw*2);
